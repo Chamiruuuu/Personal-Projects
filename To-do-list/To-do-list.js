@@ -3,14 +3,14 @@ const inputVal = document.getElementById("input-box");
 
 function addList() {
     try {
-
-        if(!isNaN(inputVal.value)){
+        
+        if (!isNaN(inputVal.value)) {
             inputVal.value = "";
             inputVal.placeholder = "AYAW NUMBER ANIMAL KA";
             return;
-        }
-
-        if (inputVal.value === "") {
+        } 
+       
+        else if (inputVal.value === "") {
             inputVal.placeholder = "PLEASE ENTER A TO-DO";
             return; 
         } 
@@ -25,7 +25,6 @@ function addList() {
         li.textContent = inputVal.value;
 
         const removeBtn = document.createElement('button');
-
         removeBtn.className = 'remove-btn';
         removeBtn.textContent = "remove";
         li.appendChild(removeBtn);
@@ -48,6 +47,7 @@ function addList() {
         console.error("Error adding item to list:", error.message);
     }
 }
+
 
 function DoneItem(li) {
     li.addEventListener("click", () => {
