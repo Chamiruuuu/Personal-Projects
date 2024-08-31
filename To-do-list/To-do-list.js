@@ -4,17 +4,12 @@ const inputVal = document.getElementById("input-box");
 function addList() {
     try {
         
-        if (!isNaN(inputVal.value)) {
+        if (inputVal.value === "" || !isNaN(inputVal.value)) {
+            inputVal.placeholder = "TARUNGA";
             inputVal.value = "";
-            inputVal.placeholder = "AYAW NUMBER ANIMAL KA";
             return;
         } 
-       
-        else if (inputVal.value === "") {
-            inputVal.placeholder = "PLEASE ENTER A TO-DO";
-            return; 
-        } 
-
+    
         let listItem = JSON.parse(localStorage.getItem("list"));
         
         if (!Array.isArray(listItem)) {
