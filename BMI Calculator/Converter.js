@@ -26,10 +26,10 @@ function DisplayValue(){
         category.textContent = "Underweight";
         alert("KAMATYONON NAKA GO")
     }
-    else if(bmiResult >= 18.5 || bmiResult<= 24.9){
+    else if(bmiResult >= 18.5 && bmiResult<= 24.9){
         category.textContent = "Normal weight"
     }
-    else if(bmiResult >= 25|| bmiResult <= 29.9){
+    else if(bmiResult >= 25 && bmiResult <= 29.9){
         category.textContent = "Overweight"
         alert("KAMATYONON NAKA GO")
     }
