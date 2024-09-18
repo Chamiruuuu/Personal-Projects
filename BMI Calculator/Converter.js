@@ -33,7 +33,7 @@ function DisplayValue(){
         category.textContent = "Overweight"
         alert("KAMATYONON NAKA GO")
     }
-    else if(bmiResult >= 30){
+    else if(bmiResult > 29.9){
         category.textContent = "Obesity"
         alert("PATAY NA ANG GAGO")
     }
