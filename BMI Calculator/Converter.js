@@ -2,8 +2,8 @@ const form = document.getElementById("bmiForm");
 const result = document.getElementById("bmiValue")
 const category = document.getElementById("bmiCategory")
 
-form.addEventListener("submit", (event) =>{
-event.preventDefault()
+form.addEventListener("submit", (e) =>{
+e.preventDefault()
 DisplayValue()
 })
 
