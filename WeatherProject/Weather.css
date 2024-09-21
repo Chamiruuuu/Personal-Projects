@@ -90,9 +90,13 @@ h1 {
     margin: 5px 0; 
     font-size: 1.2rem;
 }
-.desch{
+.descript{
+    display: flex;
+    justify-content: space-between;
+    width: 17%;
     position: absolute;
-    left: 41%;
+}
+.desch{
     margin-top: 30px;
     font-size: 16px;
     font-weight: 400;
@@ -100,13 +104,14 @@ h1 {
     
 }
 .descw{
-    position: absolute;
     margin-top: 30px;
     font-size: 16px;
     font-weight: 400;
-    left: 52%;
     font-family: 'Poppins',sans-serif;
     margin-left: 8px;
+
+    
+}
 
     
 }
