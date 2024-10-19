@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Description</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+            background-color:#121315 ;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .imgBack{
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            opacity: .4;
+        }
+        .movie-details{
+            position: relative;
+            height: 100vh;
+        }
+        .poster{
+            width: 230px;
+            height: 360px;
+            position: absolute;
+            z-index: 2;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        .Descriptions img{
+            transform: translate(200px, 190px);
+        }
+        .Descriptions h1{
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            transform: translate(470px, 165px);
+            font-size: 2em;
+            font-family: 'Poppins',sans-serif;
+        }
+        .Descriptions p,h1{
+            position: absolute;
+            z-index: 1;
+        }
+        
+        #overview-title{
+            position: absolute;
+            z-index: 1;
+            font-size: 11px;
+            width: 600px;
+            color:#ddd;
+            transform: translate(470px, 250px);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #movie-overview{
+            font-size: 11px;
+            width: 650px;
+            color:#ddd;
+            transform: translate(470px, 283px);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #release-date{
+            position: absolute;
+            z-index: 1;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transform: translate(470px, 360px);
+            width: 100%;
+            font-size: 11px;
+        }
+        #Genre{
+            position: absolute;
+            z-index: 1;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transform: translate(470px, 408px);
+            color:#ffff;
+            font-size: 11px;
+            width: 300px;
+        }
+        #Language{
+            position: absolute;
+            z-index: 1;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transform: translate(470px, 385px);
+            color:#ffff;
+            font-size: 11px;
+        }
+        #Countries{
+            position: absolute;
+            z-index: 1;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:#ffff;
+            font-size: 11px;
+            transform: translate(800px, 356px);
+
+        }
+        #Companies{
+            position: absolute;
+            z-index: 1;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transform: translate(800px, 383px);
+            color:#ffff;
+            font-size: 11px;
+            width: 500px;
+        }
+        #Genre p {
+            margin: 0;
+            display: inline-block;
+            color: #ddd;
+        }
+        #release-date p{
+            color:#ddd;
+            font-size: 11px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: inline-block;
+            margin: 0px;
+            margin-left: 2px;
+        }
+        .you-may{
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            background-color: #121315;
+            position: relative;
+        }
+        .links{
+            width: 100%;
+            padding: 20px 20px;
+            background-color:#0b0b0d ;
+            color: white;
+            margin: 0;
+            z-index: 3;
+            position: absolute;
+        }
+        .links a{
+            position: relative;
+            right: 0px;
+            color: #ffff;
+            text-decoration: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 15px;
+            font-size: 2rem;
+        }
+        a:hover{
+            color: #61dafb;
+        }
+    </style>
+
+</head>
+<body>
+
+
+        <nav>
+            <div class="links">
+                <a href="/Movie.html">Xyz</a>
+            </div>
+        </nav>
+        
+        <div class="movie-details">
+            <div class="Descriptions">
+                <h1 id="movie-title"></h1>
+                <p id="overview-title">Overview:</p>
+                <p id="movie-overview"></p>
+
+                <div class="date-container">
+                    <p id="release-date">Released: <span class="release-value"></span></p>
+                    <p id="Genre">Genre: <span class="genre-value"></span></p>
+                    <p id="Language">Language: <span class="language-value"></span></p>
+                    <p id="Countries">Countries: <span class="countries-value"></span></p>
+                    <p id="Companies">Production: <span class="companies-value"></span></p>
+                </div>
+                
+
+            </div>
+        </div>
+
+        </div>
+
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const movieId = urlParams.get('id'); 
+    const title = document.getElementById("movie-title");
+    const api_key =  "eefafae232a8b5b632c53348d968ee5e";
+    
+    const Description = async () =>{
+        const ApiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}`;
+        const response = await fetch(ApiUrl);
+        const data =  await response.json();
+        DisplayDescription(data);
+        console.log(data)
+    }
+
+    const DisplayDescription = (data) => {
+        const title = document.getElementById("movie-title");
+        const about = document.getElementById("movie-overview");
+        const details = document.querySelector(".movie-details");
+        const desc = document.querySelector(".Descriptions");
+        const ImageUrlBack = `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+        const ImageUrlPoster = `https://image.tmdb.org/t/p/original${data.poster_path}`;
+        const movieImageBack = document.createElement("img");
+        const poster = document.createElement('img');
+        const date = document.getElementById("release-date").querySelector(".release-value");
+        const genre = document.getElementById("Genre").querySelector(".genre-value");
+        const language = document.getElementById("Language").querySelector(".language-value");
+        const companies = document.getElementById("Companies").querySelector(".companies-value");
+        const countries = document.getElementById("Countries").querySelector(".countries-value");
+    
+        movieImageBack.classList.add('imgBack');
+        poster.classList.add('poster');
+    
+        movieImageBack.src = ImageUrlBack;
+        poster.src = ImageUrlPoster;
+        details.appendChild(movieImageBack);
+        desc.appendChild(poster);
+    
+        date.textContent = data.release_date;
+    
+        const languageName = data.spoken_languages.map(lang => lang.english_name).join(', ');
+        const genreNames = data.genres.map(genre => genre.name).join(', ');
+        const companiesName = data.production_companies.map(com => com.name).join(', ');
+        const countriesName = data.production_countries.map(coun => coun.name).join(', ');
+    
+        genre.textContent = genreNames;
+        language.textContent = languageName;
+        companies.textContent = companiesName;
+        countries.textContent = countriesName;
+
+        title.textContent = data.title;
+        about.textContent = data.overview;
+    }
+    Description();
+</script>
+
+</body>
+</html>
