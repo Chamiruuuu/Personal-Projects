@@ -162,9 +162,7 @@
         const ApiUrl = `https://api.themoviedb.org/3/search/movie?query=${input}&api_key=${apikey}`
         const response = await fetch(ApiUrl);
         const data = await response.json();
-        displayMovies(data.results);
-        console.log(data);
-    
+        displayMovies(data.results);    
     }catch(error){
         console.log(error)
     }
